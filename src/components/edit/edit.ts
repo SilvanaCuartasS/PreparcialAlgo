@@ -1,16 +1,14 @@
-import { editSong } from "../../utils/firebase"; // la utilidad de firestore que permite editar la infomacion
-import { appState, dispatch } from "../../store"; 
+import { editSong } from "../../utils/firebase";
+import { appState, dispatch } from "../../store";
 import { navigate } from "../../store/action";
 import { Screens } from "../../types/store";
-
-const editpr = { //Dummie
+const editpr = {
     albumname: '',
 	author: '',
 	price: '',
     stock: '',
 	image: '',
 }
-
 class EditP extends HTMLElement {
    
     constructor() {
@@ -22,24 +20,21 @@ class EditP extends HTMLElement {
         this.render();
         this.setInputValues();
     }
-
     setInputValues() {
         const currentProduct = appState.currentProduct;
-
         if (currentProduct && this.shadowRoot) {
-            
             // Asignando el nombre del álbum y el autor
             (this.shadowRoot.querySelector('#albumName') as HTMLInputElement).value = currentProduct.albumname;
             (this.shadowRoot.querySelector('#artistName') as HTMLInputElement).value = currentProduct.author;
-            (this.shadowRoot.querySelector('#imageLink') as HTMLInputElement).value = currentProduct.image;
     
             // Asegurando que los valores de precio y stock sean cadenas antes de asignarlos
             (this.shadowRoot.querySelector('#price') as HTMLInputElement).value = currentProduct.price.toString(); 
             (this.shadowRoot.querySelector('#stock') as HTMLInputElement).value = currentProduct.stock.toString(); 
     
+            // Asignando la imagen
+            (this.shadowRoot.querySelector('#imageLink') as HTMLInputElement).value = currentProduct.image;
         }
     }
-
     changeTitle(e: any)  {
         editpr.albumname = e.target.value;
     }
@@ -81,28 +76,23 @@ class EditP extends HTMLElement {
                     <button id="cancel" type="submit">Cancel</button>
                 </div>
             `;
+            const buttonSubmit = this.shadowRoot?.querySelector("#submitButton")as HTMLButtonElement;
+            buttonSubmit.addEventListener('click', this.submitForm);
+
             const songTitle = this.shadowRoot?.querySelector("#albumName") as HTMLInputElement;
             songTitle.addEventListener('change', this.changeTitle);
-            songTitle.required
 
             const songArtist = this.shadowRoot?.querySelector("#artistName") as HTMLInputElement;
             songArtist.addEventListener('change', this.changeAutor);
-            songArtist.required
 
             const songAlbum = this.shadowRoot?.querySelector("#price") as HTMLInputElement;
             songAlbum.addEventListener('change', this.changePrice);
-            songAlbum.required
 
             const songDuration = this.shadowRoot?.querySelector("#stock") as HTMLInputElement;
             songDuration.addEventListener('change', this.changeStock);
-            songDuration.required
 
             const songImage = this.shadowRoot?.querySelector("#imageLink") as HTMLInputElement;
             songImage.addEventListener('change', this.changeImage);
-            songImage.required
-
-            const buttonSubmit = this.shadowRoot?.querySelector("#submitButton")as HTMLButtonElement;
-            buttonSubmit.addEventListener('click', this.submitForm);
 
             const cancelButton = this.shadowRoot?.querySelector('#cancel')
             cancelButton?.addEventListener('click', () => {

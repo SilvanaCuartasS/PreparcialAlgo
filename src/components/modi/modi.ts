@@ -50,35 +50,6 @@ class Modi extends HTMLElement {
         this.render();
     }
 
-        
-    selectProductForEdit(productId: string | undefined) {
-
-        if (productId) {
-            const product = appState.products.find(p => p.id === productId);
-            
-            if (product) {
-                appState.currentProduct = { ...product };
-                dispatch(navigate(Screens.EDIT));  
-            } else {
-                console.error('Producto no encontrado');
-            }
-        }
-
-    }
-
-    async deleteProduct(productId: string | undefined) {
-        if (productId) {
-            try {
-                await deleteSong(productId);
-                const action = await getProductsAction();
-                dispatch(action);
-            } catch (error) {
-                console.error('Error al eliminar el producto:', error);
-            }
-        } else {
-            console.error('ID del producto no proporcionado para eliminar.');
-        }
-    }
 
     render() {
         if (this.shadowRoot) {
@@ -111,6 +82,30 @@ class Modi extends HTMLElement {
         }
         
         
+    }
+    selectProductForEdit(productId: string | undefined) {
+        if (productId) {
+            const product = appState.products.find(p => p.id === productId);
+            if (product) {
+                appState.currentProduct = { ...product };
+                dispatch(navigate(Screens.EDIT));  
+            } else {
+                console.error('Producto no encontrado');
+            }
+        }
+    }
+    async deleteProduct(productId: string | undefined) {
+        if (productId) {
+            try {
+                await deleteSong(productId);
+                const action = await getProductsAction();
+                dispatch(action);
+            } catch (error) {
+                console.error('Error al eliminar el producto:', error);
+            }
+        } else {
+            console.error('ID del producto no proporcionado para eliminar.');
+        }
     }
 
 }

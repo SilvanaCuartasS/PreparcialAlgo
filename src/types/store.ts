@@ -1,16 +1,19 @@
-export type Observer = { render: () => void } & HTMLElement; // un tipado del observer
+export type Observer = { render: () => void } & HTMLElement;
 
 export type AppState = {
 	screen: string;
 	products: any[];
 	currentProduct: {  
-        id: string | null; 
+        id: string | null;
         albumname: string;
         author: string;
         price: number;
         stock: number;
         image: string;
     } | null;
+	
+	
+	
 };
 
 export enum Screens {

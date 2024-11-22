@@ -1,20 +1,23 @@
-import { AppState, Observer } from "../types/store"; // estos son los tipados 
+import Storage from '../utils/storage';
+import { Actions, AppState, Observer } from "../types/store";
 import { reducer } from "./reducer";
 import { Screens } from '../types/store';
 
 const initialState: AppState = {
-	screen: Screens.HOME, 
-	products: [], 
-	currentProduct: null //Para detallar la info de la card
+	screen: Screens.ADD,
+	products: [],
+	currentProduct: null
 };
+
 
 export let appState = initialState;
 
 let observers: Observer[] = [];
 
+
 export const dispatch = (action: any) => {
 	const clone = JSON.parse(JSON.stringify(appState));
-	const newState = reducer(action, clone); // el cambio del payload se hace acá
+	const newState = reducer(action, clone);
 	appState = newState;
 
 	// persistStore(newState);

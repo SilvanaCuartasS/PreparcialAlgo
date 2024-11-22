@@ -1,25 +1,24 @@
 {
-  "name": "lab3algoritmos",
+  "name": "dca_scoffolding",
   "version": "1.0.0",
+  "description": "this is a base project",
   "main": "index.js",
   "scripts": {
     "start": "serve",
-    "build": "webpack --watch --mode=production "
+    "build": "webpack --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "css-loader": "^7.1.2",
-    "file-loader": "^6.2.0",
-    "serve": "^14.2.3",
+    "css-loader": "^6.7.3",
+    "serve": "^14.2.0",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.6.2",
-    "webpack": "^5.94.0",
+    "typescript": "^5.6.3",
+    "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "firebase": "^10.14.1"
+    "firebase": "^10.9.0"
   }
 }

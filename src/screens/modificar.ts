@@ -1,5 +1,5 @@
 import '../components/nav/nav'
-import Modi, { AttributeModi } from '../components/modify/modify';
+import Modi, { AttributeModi } from '../components/modi/modi';
 import { getProductsAction } from '../store/action';
 import { dispatch } from '../store';
 import { appState } from '../store';

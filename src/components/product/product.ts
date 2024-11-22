@@ -1,3 +1,4 @@
+
 export enum Attribute {
     "idsong" = "idsong",
     "image" = "image",
@@ -5,6 +6,7 @@ export enum Attribute {
     "autor" = "autor",
     "price" = "price",
     "stock" = "stock",
+   
 }
 
 class Song extends HTMLElement {

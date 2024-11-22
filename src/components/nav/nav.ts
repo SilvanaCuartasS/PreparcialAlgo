@@ -16,33 +16,27 @@ class Nav extends HTMLElement {
 
     render() {
         if (this.shadowRoot) {
-
-            const p = this.ownerDocument.createElement("h1")
-            p.innerText = 'Vinyl Store';
-            this.shadowRoot.appendChild(p);
-            p?.addEventListener('click', () =>  {
+            this.shadowRoot.innerHTML = `
+              
+                    <h1>Vinyl Store</h1>
+                    <p id="home">Home</p>
+                    <p id="add">Add New Product</p>
+                    <p id="edit">Modify Products</p>
+              
+          
+            `;
+            const edit = this.shadowRoot?.querySelector('#edit')
+            edit?.addEventListener('click', () =>  {
                 dispatch(navigate(Screens.MODIFICAR));
             })
 
-            const homeNav = this.ownerDocument.createElement("p")
-            homeNav.innerText = 'Home';
-            this.shadowRoot.appendChild(homeNav);
-            homeNav?.addEventListener('click', () =>  {
-                // dispatch(navigate(Screens.MODIFICAR));
+            const home = this.shadowRoot?.querySelector('#home')
+            home?.addEventListener('click', () =>  {
+                dispatch(navigate(Screens.HOME));
             })
-
-            const addNav = this.ownerDocument.createElement("p")
-            addNav.innerText = 'Add New Product';
-            this.shadowRoot.appendChild(addNav);
-            addNav?.addEventListener('click', () =>  {
-                // dispatch(navigate(Screens.MODIFICAR));
-            })
-
-            const modifyNav = this.ownerDocument.createElement("p")
-            modifyNav.innerText = 'Modify Products';
-            this.shadowRoot.appendChild(modifyNav);
-            modifyNav?.addEventListener('click', () =>  {
-                // dispatch(navigate(Screens.MODIFICAR));
+            const add = this.shadowRoot?.querySelector('#add')
+            add?.addEventListener('click', () =>  {
+                dispatch(navigate(Screens.ADD));
             })
 
         }

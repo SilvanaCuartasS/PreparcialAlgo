@@ -1,13 +1,10 @@
 import '../components/nav/nav'
-import Song, { Attribute } from '../components/product/product'; //componente de la card
-import { getProductsAction } from '../store/action'; //traigo toda la información, lo que hay en el arreglo
+import Song, { Attribute } from '../components/product/product';
+import { getProductsAction } from '../store/action';
 import { dispatch } from '../store';
 import { appState } from '../store';
-
 class Home extends HTMLElement {
-
-    songsList: Song[] = []
-    
+    songsList: Song[]=[]
     constructor()  {
         super();
         this.attachShadow( {mode: 'open'});
@@ -18,25 +15,23 @@ class Home extends HTMLElement {
             const songsAction = await getProductsAction();
             dispatch(songsAction)
         }
-
         this.render();
-
-        // const editProductHandler = (productId: string) => {
-        //     // Encuentra el producto que corresponde al ID
-        //     const productToEdit = appState.products.find(product => product.id === productId);
+        const editProductHandler = (productId: string) => {
+            // Encuentra el producto que corresponde al ID
+            const productToEdit = appState.products.find(product => product.id === productId);
         
-        //     if (productToEdit) {
-        //         appState.currentProduct = {
-        //             id: productToEdit.id,
-        //             albumname: productToEdit.albumname,
-        //             author: productToEdit.author,
-        //             price: productToEdit.price,
-        //             stock: productToEdit.stock,
-        //             image: productToEdit.image,
-        //         };
+            if (productToEdit) {
+                appState.currentProduct = {
+                    id: productToEdit.id,
+                    albumname: productToEdit.albumname,
+                    author: productToEdit.author,
+                    price: productToEdit.price,
+                    stock: productToEdit.stock,
+                    image: productToEdit.image,
+                };
 
-        //     }
-        // };
+            }
+        };
     }
 
     async render()  {
@@ -63,7 +58,9 @@ class Home extends HTMLElement {
                 container?.appendChild(song);
             });
         };
-
+        
+        
+        
     }
 
 }

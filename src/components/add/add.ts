@@ -2,15 +2,13 @@ import { dispatch } from '../../store';
 import { navigate } from '../../store/action';
 import { Screens } from '../../types/store';
 import { addSong } from '../../utils/firebase';
-
-const addpr = { // dummie porque le va entrar información
+const addpr = {
     albumname: '',
 	author: '',
 	price: '',
     stock: '',
 	image: '',
 }
-
 class Add extends HTMLElement {
    
     constructor() {
@@ -21,8 +19,6 @@ class Add extends HTMLElement {
     connectedCallback() {
         this.render();
     }
-
-    //Métodos para que coja el nuevo valor
     changeTitle(e: any)  {
         addpr.albumname = e.target.value;
     }
@@ -41,12 +37,11 @@ class Add extends HTMLElement {
        
     }
     
-    //Para que suba los productos
-
+    
     submitForm()  {
         addSong(addpr);
         alert('Vinilo creado')
-        dispatch(navigate(Screens.HOME)) // le redirije al home
+        dispatch(navigate(Screens.HOME))
     }
 
     render() {
@@ -61,29 +56,23 @@ class Add extends HTMLElement {
                     <button id="submitButton" type="submit">Add Product</button>
                 </div>
             `;
-
-            const songTitle = this.shadowRoot?.querySelector("#albumName") as HTMLInputElement;
-            songTitle.addEventListener('change', this.changeTitle);
-            songTitle.required
-	
-            const songArtist = this.shadowRoot?.querySelector("#artistName") as HTMLInputElement;
-            songArtist.addEventListener('change', this.changeAutor);
-            songArtist.required
-
-            const songAlbum = this.shadowRoot?.querySelector("#price") as HTMLInputElement;
-            songAlbum.addEventListener('change', this.changeAlbum);
-            songAlbum.required
-
-            const songDuration = this.shadowRoot?.querySelector("#stock") as HTMLInputElement;
-            songDuration.addEventListener('change', this.changeDuracion);
-            songDuration.required
-
-            const songImage = this.shadowRoot?.querySelector("#imageLink") as HTMLInputElement;
-            songImage.addEventListener('change', this.changeImage);
-            songImage.required
-
             const buttonSubmit = this.shadowRoot?.querySelector("#submitButton")as HTMLButtonElement;
-            buttonSubmit.addEventListener('click', this.submitForm);
+                buttonSubmit.addEventListener('click', this.submitForm);
+
+                const songTitle = this.shadowRoot?.querySelector("#albumName") as HTMLInputElement;
+                songTitle.addEventListener('change', this.changeTitle);
+	
+                const songArtist = this.shadowRoot?.querySelector("#artistName") as HTMLInputElement;
+                songArtist.addEventListener('change', this.changeAutor);
+
+                const songAlbum = this.shadowRoot?.querySelector("#price") as HTMLInputElement;
+                songAlbum.addEventListener('change', this.changeAlbum);
+
+                const songDuration = this.shadowRoot?.querySelector("#stock") as HTMLInputElement;
+                songDuration.addEventListener('change', this.changeDuracion);
+
+                const songImage = this.shadowRoot?.querySelector("#imageLink") as HTMLInputElement;
+                songImage.addEventListener('change', this.changeImage);
         }
         
     }

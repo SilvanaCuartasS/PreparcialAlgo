@@ -1,5 +1,5 @@
 import '../components/nav/nav'
-import '../components/edit/edit'
+import '../components/add/add'
 class AddProduct extends HTMLElement {
     constructor()  {
         super();
